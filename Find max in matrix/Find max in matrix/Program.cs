@@ -9,15 +9,26 @@ namespace Find_max_in_matrix
 {
     class Program
     {
+        private static Random rnd = new Random();
         private static double[,] matr;
         public static void CreateMatrix(int x)
         {
-            for (int i = 0; i < x; i++)
-                for (int j = 0; j < x; j++)
-                {
-                    Color.Print("\n Введите [" + i + "," + j + "] элемент матрицы: ", ConsoleColor.Cyan);
-                    matr[i, j] = Number.Check(double.MinValue, double.MaxValue);
-                }
+            int k = Text.HowAdd();
+            if (k == 1)
+            {
+                for (int i = 0; i < x; i++)
+                    for (int j = 0; j < x; j++)
+                    {
+                        Color.Print("\n Введите [" + i + "," + j + "] элемент матрицы: ", ConsoleColor.Cyan);
+                        matr[i, j] = Number.Check(double.MinValue, double.MaxValue);
+                    }
+            }
+            else
+            {
+                for (int i = 0; i < x; i++)
+                    for (int j = 0; j < x; j++)
+                        matr[i, j] = rnd.Next(-100, 100);
+            }
         }
         public static void PrintMatrix(int x)
         {
@@ -26,10 +37,25 @@ namespace Find_max_in_matrix
             {
                 for (int j = 0; j < x; j++)
                 {
-                    Color.Print(" " + matr[i, j], ConsoleColor.Cyan);
+                    Color.Print("\t" + matr[i, j], ConsoleColor.Cyan);
                 }
                 Color.Print("\n");
             }
+        }
+        public static double FindMaxNumberInLeftCorner(int x)
+        {
+            double max = matr[0, 0];
+            int k = x;
+            for (int i = 0; i < x; i++)
+            {
+                for (int j = 0; j < k; j++)
+                {
+                    if (matr[i, j] > max)
+                        max = matr[i, j];
+                }
+                k--;
+            }
+            return max;
         }
         static void Main()
         {
@@ -39,6 +65,8 @@ namespace Find_max_in_matrix
             CreateMatrix(x);
             Console.Clear();
             PrintMatrix(x);
+            double max = FindMaxNumberInLeftCorner(x);
+            Color.Print("\n Максимальное число, находящееся выше/на побочной диагонали равно: " + max, ConsoleColor.Yellow);
             Color.Print("\n Нажмите любую клавишу для выхода из программы...", ConsoleColor.Magenta);
             Console.ReadKey();
         }
