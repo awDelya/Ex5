@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using My_methods;
 
 namespace Find_max_in_matrix
@@ -11,7 +7,7 @@ namespace Find_max_in_matrix
     {
         private static Random rnd = new Random();
         private static double[,] matr;
-        public static void CreateMatrix(int x)
+        public static void CreateMatrix(int x)//заполнение матрицы
         {
             int k = Text.HowAdd();
             for (int i = 0; i < x; i++)
@@ -25,9 +21,9 @@ namespace Find_max_in_matrix
                     else matr[i, j] = rnd.Next(-100, 100);
                 }
         }
-        public static void PrintMatrix(int x)
+        public static void PrintMatrix(int x)//печать матрицы
         {
-            Color.Print("\n\t Ваша матрица выглядит так: \n", ConsoleColor.Yellow);
+            Color.Print("\n\t Матрица: \n", ConsoleColor.Yellow);
             for (int i = 0; i < x; i++)
             {
                 for (int j = 0; j < x; j++)
@@ -37,7 +33,7 @@ namespace Find_max_in_matrix
                 Color.Print("\n");
             }
         }
-        public static double FindMaxNumberInLeftCorner(int x)
+        public static double FindMaxNumberInLeftCorner(int x)//поиск максимального элемента
         {
             double max = matr[0, 0];
             int k = x;
