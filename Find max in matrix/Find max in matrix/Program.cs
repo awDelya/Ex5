@@ -14,21 +14,16 @@ namespace Find_max_in_matrix
         public static void CreateMatrix(int x)
         {
             int k = Text.HowAdd();
-            if (k == 1)
-            {
-                for (int i = 0; i < x; i++)
-                    for (int j = 0; j < x; j++)
+            for (int i = 0; i < x; i++)
+                for (int j = 0; j < x; j++)
+                {
+                    if (k == 1)
                     {
                         Color.Print("\n Введите [" + i + "," + j + "] элемент матрицы: ", ConsoleColor.Cyan);
                         matr[i, j] = Number.Check(double.MinValue, double.MaxValue);
                     }
-            }
-            else
-            {
-                for (int i = 0; i < x; i++)
-                    for (int j = 0; j < x; j++)
-                        matr[i, j] = rnd.Next(-100, 100);
-            }
+                    else matr[i, j] = rnd.Next(-100, 100);
+                }
         }
         public static void PrintMatrix(int x)
         {
